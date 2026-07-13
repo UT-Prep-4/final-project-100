@@ -1,4 +1,4 @@
-#Name(s):
+#Name(s): kresley jessieann brookLynn kayla miah
 #Final Project - Build Something Worth Showing Off
 '''
 This is the big one. At the end of camp you will demo this project at the
@@ -55,13 +55,123 @@ TRACK C: YOUR OWN IDEA
 =============================== PLAN FIRST ====================================
 Before you write code, fill this in (it will keep you honest all week):
 
-  MY PROJECT: (one sentence)
-  THE PIECES I NEED TO BUILD: (list 3-6 functions or parts)
-  WHAT I WILL DEMO AT SHOWCASE: (the 60-second version)
+  MY PROJECT: (We created hangman.)
+  THE PIECES I NEED TO BUILD: (Turtle, input, while loop)
+  WHAT I WILL DEMO AT SHOWCASE: (We have created hangman in python. 
+  We created our own word list and used turtle to display the actual person. 
+  You guess a letter and have 4 lives. If you guess a wrong letter, you lose a life. 
+  if you lose all your lives the game ends. If you guess the word correctly, you win!)
 
 ==============================================================================
 Build your project below (and split it into more .py files if it gets big;
 the grader reads all of them). Delete this line and start!
 '''
 
-print("My final project is not built yet!")
+
+
+words= ["mermaid" , "spoddick" , "unicorn" , "ocean" , "hippopotomonstrosesquipedaliophobia"]
+blank = "_"
+lives = 4
+
+while lives>0:
+  for word in words:
+    print(word)
+    empty = ""
+    for letter in range(len(word)):
+      guess = input("Guess a letter: ")
+
+      if guess in word:
+        print("Correct Letter!")
+        empty += word[letter]
+        print(empty)
+        print("~"*15)
+
+      else:
+        print("WRONG.")
+        empty += blank
+        lives = lives-1
+        print(empty)
+        print("~"*15)
+        continue
+
+    print(empty)
+    print("~+*15")
+    print("Starting next word!")
+    print()
+
+print(word)
+
+  
+
+'''
+#import random, time
+# Word band
+# Pick a random word
+RANDOM_WORD = random.choice(words)
+
+guessed = ""
+lives = 4
+GAME_ACTIVE = True
+while lives > 0:
+  print("Welcome to Hangman!")
+  print("")
+  print("")
+  print("")
+  time.sleep(1.5)
+  WORD_FOR_GAME = RANDOM_WORD
+  LENGTH_OF_RAN_WORD = len(WORD_FOR_GAME)
+  print("The Word Is: ", end = " ")
+  for i in range(LENGTH_OF_RAN_WORD):
+      print("_", end = " ")
+  #\033c
+  print("")
+  print("")
+  print("")
+  CHAR_LIST = list(WORD_FOR_GAME)
+  print(CHAR_LIST)
+  print("")
+  USER_GUESS = input("Guess a letter: ")
+
+
+
+while USER_GUESS
+for i in range(WORD_FOR_GAME):
+
+
+
+
+      
+
+  letter = USER_GUESS
+
+
+  for letter in RANDOM_WORD:
+    if letter in RANDOM_WORD:
+      display = display + "_"
+
+  print("/nWord:" , display)
+
+      
+
+  guess = input("Guess a letter: ")
+  
+
+
+  
+    if lives == 0:
+        print("/nGame Over!")
+        print("The word was:" , words)
+    elif guess in guessed:
+        print("You already guessed that letter.")
+    elif guess in words:
+        print("Correct!")
+        guessed = guessed + guess
+    else:
+        print("Wrong! HAHA")
+        lives = lives - 1
+        guessed = guessed + guess
+        print("Lives left:" , lives)
+    if display  == words:
+      print("You won!")
+        
+  '''
