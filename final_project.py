@@ -68,110 +68,157 @@ the grader reads all of them). Delete this line and start!
 '''
 
 
+basehangman = """|--------0
+|        |
+|        |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|___________________"""
 
-words= ["mermaid" , "spoddick" , "unicorn" , "ocean" , "hippopotomonstrosesquipedaliophobia"]
+onewrong = """|--------0
+|        |
+|        |
+|    ( ' - ' )
+|
+|
+|
+|
+|
+|
+|
+|
+|___________________"""
+
+twowrong = """|--------0
+|        |
+|        |
+|    ( ' - ' )
+|        |
+|        |
+|        |
+|        |
+|        |
+|
+|
+|
+|___________________"""
+
+threewrong = """|--------0
+|        |
+|        |
+|     ( ' - ' )
+|        |
+|    /---|---\\
+|      / | \\
+|      / | \\
+| |
+|
+|
+|
+|
+|___________________"""
+
+# miah is da goat
+fourwrong = """|--------0
+|        |
+|        |
+|    ( ' - ' )
+|        |
+|    /---|---\\
+|      / | \\
+|      / | \\
+|        |
+|       / \\
+|       / \\
+|.      / \\
+|
+|___________________"""
+
+deadhangman = """|--------0
+|        |
+|        |
+|   <( X ~ X )>
+|        |
+|    /---|---\\
+|      / | \\
+|      / | \\
+|.       |
+|       / \\
+|       / \\
+|       / \\
+|
+|___________________"""
+
+hangmans=[onewrong, twowrong, threewrong, fourwrong, deadhangman]
+
+wordlist = ["mermaid", "spodick", "unicorn", "ocean", "hippopotomonstrosesquipeliphobia"]
 blank = "_"
 lives = 4
 
-while lives>0:
-  for word in words:
-    print(word)
-    empty = ""
-    for letter in range(len(word)):
-      guess = input("Guess a letter: ")
+print(basehangman)
 
-      if guess in word:
-        print("Correct Letter!")
-        empty += word[letter]
-        print(empty)
-        print("~"*15)
 
-      else:
-        print("WRONG.")
-        empty += blank
-        lives = lives-1
-        print(empty)
-        print("~"*15)
-        continue
+while lives > 0: # what condition keeps the game going?
 
-    print(empty)
-    print("~+*15")
-    print("Starting next word!")
+  for word in wordlist:  # loop through each word in wordlist
+
+    revealed = [blank] * len(word)
+    print("\n","="*20, "New game","="*20, "\n")
+    print( basehangman, "\n")
+    print("Amount of letters in word: ", len(word), "(", " _ " * len(word), ")")
+    option = 0
+    empty = []
+
+    for letter in range(len(word)):  #  loop through each letter position in the word
+        print("\n","="*50, "\n")
+        guess = input("Enter a letter: ")
+        letterbank = empty.append(guess)
+
+        if guess in word:  # check if the guessed letter is in the word
+            #  if it's also in the correct spot, print a message
+
+            for i in range(len(word)):  #  loop through the word to reveal matching letters
+                if guess == word[i]:  # check if this position matches the guess
+                    revealed[i] = guess
+
+        else:
+            print("Letter not in word.")
+            lives = lives-1
+            if option == 4:
+                break
+            print(hangmans[option])
+            print(letterbank)
+            option = option+1
+            #  handle a wrong guess (print message, lose a life,
+            # check if out of guesses, show next hangman stage)
+            pass
+
+        print("\n", "".join(revealed))
+
+    print()
+    final = "".join(revealed)
+    print("\n", "Your final word is:", final, "\n")
+
+    if word == revealed:  # check if the revealed word matches the actual word
+        print("","=============== You guessed correctly! You beat Hangman! ===============")
+    else:
+        print(deadhangman)
+        print("X"*15, "You did not beat hangman", "X"*15, "\n")
     print()
 
-print(word)
-
-  
-
-'''
-#import random, time
-# Word band
-# Pick a random word
-RANDOM_WORD = random.choice(words)
-
-guessed = ""
-lives = 4
-GAME_ACTIVE = True
-while lives > 0:
-  print("Welcome to Hangman!")
-  print("")
-  print("")
-  print("")
-  time.sleep(1.5)
-  WORD_FOR_GAME = RANDOM_WORD
-  LENGTH_OF_RAN_WORD = len(WORD_FOR_GAME)
-  print("The Word Is: ", end = " ")
-  for i in range(LENGTH_OF_RAN_WORD):
-      print("_", end = " ")
-  #\033c
-  print("")
-  print("")
-  print("")
-  CHAR_LIST = list(WORD_FOR_GAME)
-  print(CHAR_LIST)
-  print("")
-  USER_GUESS = input("Guess a letter: ")
-
-
-
-while USER_GUESS
-for i in range(WORD_FOR_GAME):
 
 
 
 
-      
-
-  letter = USER_GUESS
 
 
-  for letter in RANDOM_WORD:
-    if letter in RANDOM_WORD:
-      display = display + "_"
-
-  print("/nWord:" , display)
-
-      
-
-  guess = input("Guess a letter: ")
-  
 
 
-  
-    if lives == 0:
-        print("/nGame Over!")
-        print("The word was:" , words)
-    elif guess in guessed:
-        print("You already guessed that letter.")
-    elif guess in words:
-        print("Correct!")
-        guessed = guessed + guess
-    else:
-        print("Wrong! HAHA")
-        lives = lives - 1
-        guessed = guessed + guess
-        print("Lives left:" , lives)
-    if display  == words:
-      print("You won!")
-        
-  '''
+
